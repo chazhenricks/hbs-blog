@@ -13,7 +13,7 @@ Store each article's title, author, copy/content, and published date in an objec
 The blog page should be a handlebars template that will be bound to the json data.
 Use the following Gruntfile.js configuration in order to precompile your template(s). Be sure to match/update this info to match your project's file structure.
 
-module.exports = function(grunt) {
+```module.exports = function(grunt) {
 
   grunt.initConfig({
     // Change the b-fy task to add a transform task
@@ -68,6 +68,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jshint', 'sass', 'browserify', 'watch']);
 };
+```
 ### Stretch goal #1
 
 Create a partial to display a navbar and a footer for your site. Include them in your blog page template.
