@@ -1,52 +1,78 @@
-# The Static Web: HTML + CSS Milestone Challenge
-### Create a page for your personal branding that will showcase your work and be used as part of your graduation self-marketing.
-## Setup
+#Best Blog Ever: A Handlebars.js exercise
 
+##Setup
+In this exercise you will use the technology you've learned to this point ( Browserify, SASS, Grunt) to
+create a blog page with three short articles (You can use placeholder text for the articles).
 
-This will create a project folder and cd you into it.
-When you are ready to start the challenge, request the Github Classroom link from your instructor
-+ Once your repository is created on GitHub, copy the list of commands under **"..or create a new repository on the command line"** by clicking on the clipboard icon
-+ Paste the commands into your terminal. This will create a README.md file, add it, commit it, connect your local repo to GitHub, and set you up to push changes. (If the last command, `git push origin master` isn't automatically executed, hit enter/return to run it).
+Handlebars will be used to create your view -- a template and a JavaScript object bound together and rendered as HTML
 
-All of your work should be on a branch, NOT on master. To do this, type:
+Make sure you have a package.json file in your lib folder, either by running npm init in that folder or repurposing a package.json from a previous project that used browserify and SASS. Add the necessary packages with
+npm install handlebars hbsfy --save.
+Create a blog page with three short articles.
+Store each article's title, author, copy/content, and published date in an object in a json file.
+The blog page should be a handlebars template that will be bound to the json data.
+Use the following Gruntfile.js configuration in order to precompile your template(s). Be sure to match/update this info to match your project's file structure.
 
-```bash
-git checkout -b challenge
-touch index.html
-mkdir css && touch css/styles.css
-mkdir images
-```
-You are now ready to work in the `challenge` branch.
+module.exports = function(grunt) {
 
-If you would like to have your work reviewed, push up the branch (`git push origin challenge`), submit a pull request on Github, and Slack the instruction team with a request for review (be sure to include a link to your repo). A member of the instruction team will take a look and give feedback. Your work does not need to be complete to receive feedback.
+  grunt.initConfig({
+    // Change the b-fy task to add a transform task
+    browserify: {
+      js: {
+          src: ['../js/quiz.js'],
+          dest: '../dist/app.js'
+      },
+      options: {
+          transform: ['hbsfy'],
+          browserifyOptions: {
+          paths: [
+            "./node_modules"
+            ]
+          }
+      }
+    },
+    jshint: {
+      options: {
+        predef: [ "document", "console", "$" ],
+        esnext: true,
+        globalstrict: true,
+        globals: {},
+        browserify: true
+      },
+      files: ['../js/**/*.js']
+    },
+    sass: {
+      dist: {
+        files: {
+          '../css/main.css': '../sass/main.scss'
+        }
+      }
+    },
+    watch: {
+      javascripts: {
+        files: ['../js/**/*.js'],
+        tasks: ['jshint', 'browserify']
+      },
+      sass: {
+        files: ['../sass/**/*.scss'],
+        tasks: ['sass']
+      },
+      hbs: {
+        files: ['../templates/**/*.hbs'],
+        tasks: ['browserify']
+      }
+    }
+  });
 
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-## Instructions
+  grunt.registerTask('default', ['jshint', 'sass', 'browserify', 'watch']);
+};
+###Stretch goal #1
 
-Create a page for your own personal branding that can be treated as the beginning of your portfolio. You should focus on HTML structure and syntax with basic layout using styles.
+Create a partial to display a navbar and a footer for your site. Include them in your blog page template.
 
+###Stretch goal #2
 
-### Content and Technical Requirements
-1. Title - make it meaningful.
-1. Header element `<h1>` - This is the main headline; include your name and what this page is.
-1. Photo
-1. Section element containing your bio
-1. Section element with links to resources or sites you like
-1. Section element with two sections for future projects (placeholders)
-1. Section area containing your blog posts. Each of these should use ```article``` element.
-1. Footer element with email and professional social media links; Github, twitter, LinkedIn, etc.
-1. Semantic mark-up for all major elements.
-1. Validate your html page with W3 validator: https://validator.w3.org/
-1. Appropriate folder structure: images, css.
-1. Color scheme - choose primary, secondary, and tertiary colors in addition to black and white. Use these colors consistently in your stylesheet.
-1. The page will have a linked JavaScript file for the blog posts section. Create an array to hold your posts (at least 2 posts). Each item in the array must be an object that contains at a minimum the following information: Title, Copy, Date. Use JavaScript to add each post to the DOM.
-
-
-## Notes
-* Examples of non-semantic elements: `<div>` and `<span>` - Tells nothing about its content.
-* Examples of semantic elements: `<form>`, `<table>`, and `<article>` - Clearly defines the content.
-
-* Page Titles and Headings: http://meetcontent.com/blog/introducing-content-page-titles-headings/
-* Explore and create color combinations: https://color.adobe.com
-* Material Color: https://material.io/guidelines/style/color.html#color-color-system
-    - Material color tool - https://material.io/color/#!/?view.left=0&view.right=0
+Add a helper function that allows your template to add today's date to each article instead of the date from the json file.
+Add a "more posts" button to your page that reuses the template, but binds it to a second set of articles data.
