@@ -1,6 +1,6 @@
-#Best Blog Ever: A Handlebars.js exercise
+# Best Blog Ever: A Handlebars.js exercise
 
-##Setup
+## Setup
 In this exercise you will use the technology you've learned to this point ( Browserify, SASS, Grunt) to
 create a blog page with three short articles (You can use placeholder text for the articles).
 
@@ -68,11 +68,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jshint', 'sass', 'browserify', 'watch']);
 };
-###Stretch goal #1
+### Stretch goal #1
 
 Create a partial to display a navbar and a footer for your site. Include them in your blog page template.
 
-###Stretch goal #2
+### Stretch goal #2
 
 Add a helper function that allows your template to add today's date to each article instead of the date from the json file.
 Add a "more posts" button to your page that reuses the template, but binds it to a second set of articles data.
