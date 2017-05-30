@@ -4,30 +4,62 @@
 <head>
     <title> Chaz Henricks - Blog </title>
     <link rel="stylesheet" type="text/css" href="lib/node_modules/materialize-css/dist/css/materialize.css">
-    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 
-<body>
-    <button id="enter" type="button" class="enter-button">ENTER</button>
+<body class="grey lighten-5">
+
+
+  <header id="header-div">
+    <nav>
+      <div class="nav-wrapper grey darken-1">
+        <a href="#" class="brand-logo">Chaz Henricks</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#" id="blogs-btn">Blog</a></li>
+            <li><a href="#" id="about-btn">About</a></li>
+            <li><a href="#" id= "portfolio-btn">Portfolio</a></li>
+            <li><a href="#" id= "new-blog-btn">Write New Blog</a></li>
+          </ul>
+       </div>
+    </nav>
+  </header>  <!-- End Nav Bar -->
+
+
+  <main class="container">
+    <article id="main-content"></article>
+  </main> <!-- End Main Content Container -->
+
+  <footer class="page-footer grey lighten-1">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="grey-text text-lighten-4">Please feel free to visit my github account to check out what Ive been up to or shoot me an email if you want to grab a coffee and talk about nerdy stuff. </p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="mailto:chazhenricks@gmail.com"><img src="images/mail.svg.png" alt="mail"></a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/chazhenricks"><img src="images/github.svg" alt="GitHub"></a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/chazhenricks/"><img src="images/linkedin.svg" alt="LinkedIn"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright grey darken-2">
+            <div class="container">
+            © 2017 Chaz Henricks
+            </div>
+          </div>
+        </footer> <!-- End Footer -->
 
 
 
 
-    <footer class="page-footer">
-        <p class="copyright"> &copy; Chaz Henricks - 2017</p>
-        <nav class="footer-nav">
-            <a href="https://github.com/chazhenricks"><img src="images/github.svg" alt="GitHub"></a>
-            <a href="https://www.linkedin.com/in/chaz-henricks-42b839137/"><img src="images/linkedin.svg" alt="LinkedIn"></a>
-            <a href="mailto:chazhenricks@gmail.com">Contact</a>
-        </nav>
-    </footer>
 
-
-
-
-    <script src="lib/node_modules/jquery/dist/jquery.js"></script>
-    <script src="lib/node_modules/materialize-css/dist/js/materialize.js"></script>
-    <script src="dist/app.js"></script>
+<!-- Begin Script Tags -->
+<script src="lib/node_modules/jquery/dist/jquery.js"></script>
+<script src="lib/node_modules/materialize-css/dist/js/materialize.js"></script>
+<script src="dist/app.js"></script>
+<!-- End Script Tags -->
 </body>
 
 </html>

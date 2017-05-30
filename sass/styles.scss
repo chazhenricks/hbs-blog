@@ -1,0 +1,26 @@
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .portfolio-text{
+    font-size: 2em;
+    padding-top: 2em;
+  }
+
+
+/**************
+NEW BLOG INFO
+**************/
+.new-blog-post{
+  height: 150px;
+}
+
+.hidden{
+  display: none;
+}
