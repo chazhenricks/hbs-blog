@@ -6,6 +6,7 @@ let Handlebars = require("hbsfy/runtime"),
     blogTemplate = require("../templates/blogs.hbs"),
     portfolioTemplate = require("../templates/portfolio.hbs"),
     navBarTemplate = require("../templates/nav-bar-template.hbs"),
+    newBlogTemplate = require("../templates/new-blog-post.hbs"),
     aboutTemplate = require("../templates/about.hbs");
 
 
@@ -22,6 +23,14 @@ $(document).on("click", "#about-btn", function(){
 
 $(document).on("click", "#portfolio-btn", function(){
     loadPortfolio();
+});
+
+$(document).on("click", "#new-blog-btn", function(){
+    loadNewBlog();
+});
+
+$(document).on("click", "#new-blog-post-btn", function(){
+    postBlog();
 });
 
 
@@ -107,6 +116,10 @@ Handlebars.registerPartial("navBarPartial", navBarTemplate);
 
 
 
+var loadNewBlog = function(){
+  $("#main-content").html(newBlogTemplate());
+};
+
 var loadPortfolio = function(){
   $("#main-content").html(portfolioTemplate());
 };
@@ -116,11 +129,30 @@ var loadAbout = function(){
 };
 
 var loadBlogs = function(){
+  $("#main-content").html("");
   calls.getBlogs()
     .then(function(blogs){
       console.log("blogs", blogs);
-      $("#main-content").html(blogTemplate(blogs));
+      for (var post in blogs){
+        console.log("Post", post);
+      $("#main-content").append(blogTemplate(blogs[post]));
+      }
     });
+};
+
+var postBlog = function(){
+  var newBlogPost = {};
+      newBlogPost.title =$("#new-blog-title").val();
+      newBlogPost.author =$("#new-blog-author").val();
+      newBlogPost.copy =$("#new-blog-post").val();
+      newBlogPost.date =$("#new-blog-date").html();
+
+      calls.postBlog(newBlogPost)
+      .then(function(response){
+        console.log(response);
+        loadBlogs();
+      });
+
 };
 
 

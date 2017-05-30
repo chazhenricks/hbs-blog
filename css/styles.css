@@ -10,4 +10,13 @@ main {
   font-size: 2em;
   padding-top: 2em; }
 
+/**************
+NEW BLOG INFO
+**************/
+.new-blog-post {
+  height: 150px; }
+
+.hidden {
+  display: none; }
+
 /*# sourceMappingURL=styles.css.map */

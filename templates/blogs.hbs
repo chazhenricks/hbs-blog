@@ -1,13 +1,12 @@
 
-{{#each blogs}}
 <div class="row">
 
 {{!-- BLOG POST --}}
     <div class="col-m9">
-        <h3>{{title}}</h3>
-        <p>Written By: {{author}} on {{date}}
+        <h3>{{this.title}}</h3>
+        <p>Written By: {{this.author}} on {{this.date}}
         <div class="divider"></div>
-        <p>{{copy}}</p>
+        <p>{{this.copy}}</p>
         <div class="divider"></div>
     </div> {{!-- End col-md9 --}}
 
@@ -18,4 +17,4 @@
 
 
 
-{{/each}}
+
